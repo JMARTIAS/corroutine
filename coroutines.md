@@ -45,7 +45,7 @@ runBlocking bloquea el main thread
 ```
 que me permite cancelarlas después de un tiempo 
 
-## Async Await
+## Scope
 
 
 
