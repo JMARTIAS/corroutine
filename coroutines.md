@@ -30,6 +30,13 @@ implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:x.x.x"
 ```
 agrega el CoroutineScope a los ViewModels que esta configurado para comenzar corrutinas relacionadas con la UI. Agrega una extension function `viewModelScope`, el que esta vinculado a Dispatchers.Main y se cancelará automaticamente cuando ViewModel sea limpiado?
 
+_cuando necesito cambiar entre dispatchers, porque lo que voy a realizar podría bloquear el hilo, se usa el `withContext`, el que cambia el dispatcher solo por el lambda, cuando tiene el resultado vuelve al dispatcher inicial_
+
+hay 3 
+- Main
+- IO
+- Default
+
 
 ```gradle
  // Coroutines
