@@ -88,6 +88,33 @@ permite manejar cualquier error que pueda venir en una corrutina
 
 # Curso pluralsight
 
+- AsyncTask generaba memory leak si no terminaba, tenía la complejidad del multithreading, curva de aprendizaje, no son buenos para tareas largas y fue deprecado en android 11
+
+- es mas facil evitar los problemas de memory leak 
+- la API es mas simple 
+- Manejo mas simple de errores(try - catch)
+- No son threads, muchas pueden correr en el mismo 
+- Pueden correr en el main thread sin bloquearlo
+
+## Coroutine Builder
+
+launch y async son los que mas se van a usar, si quieres crear una corrutina que devuelva un valor creas un async sino devuelve un valor lo haces con launch. El tercer Builder es el runBlocking.
+
+son una instancia de computation suspendable (WTF), quiere decir que cuando una se suspende una corrutina, se pausa, pero no bloquea el thread, esto le da la oportunidad a otro código de correr. La corrutina luego puede continuar corriendo.
+
+para crear una suspend function solo hay que ponerle suspend, delay() pausa la corrutina, sleep bloquea. el thread
+
+cooperative code, es código que corre con las corrutinas
+
+## Structed concurrency
+hay una relación de padres e hijos en las corrutinas, los hijos terminan antes de los padres, si es al reves puedes terminar con corrutinas huerfanas. Concurrency asegura que los hijos siempre van a terminar antes que los padres
+
+para manejar esto las corrutinas se crean dentro de un CoroutineScope, estos manejan el ciclo de vida de la corrutina 
+hay varios scopes 
+- GlobalScope, esta disponible durante toda la vida de una app
+- LifecycleScope, esta disponible si se usa android jetpack y existe durante la vida de un objeto padre como una Activity
+- ViewModelScope, tambien es de jetpack y esta preconfigurado
+
 ```gradle
  // Coroutines
     implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.3.5'
