@@ -1,5 +1,7 @@
 # Corrutinas
 
+# Codelab
+
 se usan hace muchos años en otros lenguajes, en kotlin es algo "nuevo" y da solución a varios problemas comunes de android, 
 - permiten reemplazar las callbacks y transformarlo en programación secuencial
 - mantienen el código Main Safe, esto quiere decir que se pueden llamar corrutinas desde el Main Thread y todo va a estar bien
@@ -37,6 +39,54 @@ hay 3
 - IO
 - Default
 
+suspend fun refreshTitle() {
+   // interact with *blocking* network and IO calls from a coroutine
+   withContext(Dispatchers.IO) {
+
+# Curso udemy
+
+los threads usan muchos recursos, las corrutinas por su parte son mas livianas, usan el thread pools ( un montón de threads que se pueden usar), con las corrutinas uno usa un thread y cuando se desocupa vuelve a estar disponible para que lo use otra corrutina, reusan threads y se pueden usar muchas sin afectar la performance de la app.
+
+simplifican el código asincrónico, hacen que la programación paralela parezca secuencial 
+
+Tienen una sintaxis simple y son faciles de utilizar
+
+Se pueden pausar y continuar en cualquier momento, no esta encerrada en un thread, solo es el lugar para ejecutar una corrutina, pero estas se pueden parar y continuar en cualquier momento, son livianas y se pueden reutilizar
+
+## Scope 
+
+es lo que crea y corre una corrutina, provee eventos del ciclo de vida, como pararla, continuar, pausarla, eso lo maneja el scope
+
+Provee los métodos de lifecycle de las corrutinas, nos permite pausarla y comenzarlas
+- GlobalScope.launch, es el scope de toda la aplicación, si queda corriendo en segundo plano no parará salvo que nosotros le digamos 
+- runBlocking crea un scope y corre la corrutina en una forma que bloquea, no se usa mucho, salvo que quiera que se bloquee o en casos que la app solo hace una cosa 
+- coroutineScope crea un nuevo scope y no se completa hasta que todas las corrutinas hijas se completen 
+
+## Context
+
+esta muy ligado al scope, es el estado de la corrutina, provee variables, funcionalidades que puedes usar en tu corrutina 
+
+## Suspend functions 
+
+Son funciones que pueden correr en una corrutina, o pueden ser suspendidas, proveen la funcionalidad para trabajar en paralelo
+
+## Jobs
+
+Maneja la corrutina, se puede usar para manejar los metodos de lifecycle de la corrutina, o sea se puede usar para cancelar la corrutina 
+
+## Deferred 
+
+La corrutina devuelve un valor y como corre en paralelo este valor solo se puede obtener cuando la corrutina termina su ejecución. Es un resultado futuro de una corrutina, le puedes decir al programa que espere hasta obtener el resultado 
+
+## Dispatcher 
+
+Maneja en que thread corre la corrutina 
+
+## Manejo de errores
+
+permite manejar cualquier error que pueda venir en una corrutina 
+
+# Curso pluralsight
 
 ```gradle
  // Coroutines
